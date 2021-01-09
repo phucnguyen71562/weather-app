@@ -1,0 +1,57 @@
+{
+  "name": "weather",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^24.9.1",
+    "@types/node": "^12.19.12",
+    "@types/react": "^16.14.2",
+    "@types/react-dom": "^16.9.10",
+    "@types/styled-components": "^5.1.7",
+    "@types/unsplash-js": "^6.3.1",
+    "axios": "^0.21.1",
+    "dayjs": "^1.10.2",
+    "query-string": "^6.13.8",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
+    "react-icons": "^3.11.0",
+    "react-scripts": "3.4.3",
+    "react-toastify": "^6.2.0",
+    "styled-components": "^5.2.1",
+    "typescript": "^3.9.7",
+    "unsplash-js": "^6.3.0"
+  },
+  "scripts": {
+    "start": "npm run watch:css && react-scripts start",
+    "build": "GENERATE_SOURCEMAP=false npm run build:css && react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "build:css": "postcss src/assets/css/tailwind.css -o src/assets/css/styles.css",
+    "watch:css": "postcss src/assets/css/tailwind.css -o src/assets/css/styles.css"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@tailwindcss/ui": "^0.6.2",
+    "autoprefixer": "^10.2.1",
+    "postcss": "^8.2.3",
+    "postcss-cli": "^8.3.1",
+    "tailwindcss": "^1.9.6"
+  }
+}
