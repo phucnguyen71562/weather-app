@@ -1,7 +1,11 @@
 import styled from 'styled-components';
 
 export const StyledContainer = styled.div`
-  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(0, 0.8fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+
+  @media screen and (min-width: 1600px) {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
 `;
 
 export const StyledItem = styled.div`

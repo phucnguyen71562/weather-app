@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import Unsplash, { toJson } from 'unsplash-js';
 import { Cities } from '../Cities';
 import { DailyWeather } from '../DailyWeather';
-import { StyledContainer } from './MainPanel.style';
+import { StyledContainer, StyledWrapper } from './MainPanel.style';
 
 const unsplash = new Unsplash({
   accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY || '',
@@ -60,22 +60,19 @@ function MainPanel({
 
     if (city) return;
 
-    if (cities.data.length < 3) {
-      unsplash.search
-        .photos(params?.name.toLowerCase(), 1, 1)
-        .then(toJson)
-        .then((json: any) => {
-          getWeather({
-            data: [
-              ...cities.data,
-              { ...params, image: json?.results[0]?.urls?.regular },
-            ],
-            current: params.id,
-          });
+    unsplash.search
+      .photos(params?.name.toLowerCase(), 1, 1)
+      .then(toJson)
+      .then((json: any) => {
+        getWeather({
+          data: [
+            ...cities.data,
+            { ...params, image: json?.results[0]?.urls?.regular },
+          ],
+          current: params.id,
         });
-    } else {
-      toast.error('Chỉ được thêm tối đa 3 thành phố.');
-    }
+      })
+      .catch((e) => toast.error(e.message));
   };
 
   const handleSetCurrentCity = (params: any): void => {
@@ -119,22 +116,24 @@ function MainPanel({
   };
 
   return (
-    <StyledContainer className="h-full p-6 lg:px-12 flex flex-col overflow-y-auto">
-      <h1 className="text-3xl font-light sm:leading-9 leading-7 tracking-tight text-blue-900">
-        Weather <span className="font-bold">Forecast</span>
-      </h1>
+    <StyledContainer className="h-full p-6 lg:px-12 flex flex-col overflow-y-auto align-items-end">
+      <StyledWrapper>
+        <h1 className="text-3xl font-light sm:leading-9 leading-7 tracking-tight text-blue-900">
+          Weather <span className="font-bold">Forecast</span>
+        </h1>
 
-      <Cities
-        cities={cities}
-        onSetCurrentCity={handleSetCurrentCity}
-        onAddCity={handleAddCity}
-        onRemoveCity={handleRemoveCity}
-      />
+        <Cities
+          cities={cities}
+          onSetCurrentCity={handleSetCurrentCity}
+          onAddCity={handleAddCity}
+          onRemoveCity={handleRemoveCity}
+        />
 
-      <DailyWeather
-        dailyWeather={dailyWeather}
-        lastRequestCall={lastRequestCall}
-      />
+        <DailyWeather
+          dailyWeather={dailyWeather}
+          lastRequestCall={lastRequestCall}
+        />
+      </StyledWrapper>
     </StyledContainer>
   );
 }

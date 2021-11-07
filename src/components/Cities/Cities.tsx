@@ -23,7 +23,7 @@ function Cities({ cities, onSetCurrentCity, onAddCity, onRemoveCity }: Props) {
 
   return (
     <>
-      <StyledContainer className="grid gap-6 md:gap-12 justify-items-auto h-40 md:h-64 mt-8">
+      <StyledContainer className="grid gap-6 md:gap-12 h-40 md:h-64 mt-8">
         {cities.data.map((city) => (
           <StyledItem
             key={city.id}
@@ -49,7 +49,7 @@ function Cities({ cities, onSetCurrentCity, onAddCity, onRemoveCity }: Props) {
               />
             </div>
             <p
-              className="text-xs md:text-sm text-center font-roboto font-medium mt-4 text-blue-900 truncate block"
+              className="w-full text-xs md:text-sm text-center font-roboto font-medium mt-4 text-blue-900 truncate block"
               onClick={() => onSetCurrentCity(city)}
             >
               {city.name}
@@ -57,15 +57,17 @@ function Cities({ cities, onSetCurrentCity, onAddCity, onRemoveCity }: Props) {
           </StyledItem>
         ))}
 
-        <div
-          className="flex flex-col justify-center items-center border-2 border-solid border-blue-900  rounded-xl md:rounded-3xl h-24 md:h-48 cursor-pointer text-blue-900 mt-7 hover:border-blue-800 hover:text-blue-800"
-          onClick={() => setShowModal(true)}
-        >
-          <p className="text-3xl md:text-4xl">+</p>
-          <p className="md:mt-6 text-sm md:text-md font-medium text-center">
-            Add city
-          </p>
-        </div>
+        {cities.data.length < 4 && (
+          <div
+            className="flex flex-col justify-center items-center border-2 border-solid border-blue-900 rounded-xl md:rounded-3xl w-40 h-24 md:h-48 cursor-pointer text-blue-900 mt-7 mb-auto hover:border-blue-800 hover:text-blue-800"
+            onClick={() => setShowModal(true)}
+          >
+            <p className="text-3xl md:text-4xl">+</p>
+            <p className="md:mt-6 text-sm md:text-md font-medium text-center">
+              Add city
+            </p>
+          </div>
+        )}
       </StyledContainer>
 
       <Modal

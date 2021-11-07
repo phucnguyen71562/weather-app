@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ToastContainer } from 'react-toastify';
 import weatherApi from './apis/weatherApi';
-import './App.css';
-import { StyledContainer } from './App.style';
 import { Drawer } from './components/Drawer';
 import { MainPanel } from './components/MainPanel';
 import { Weather } from './components/Weather';
@@ -90,7 +88,7 @@ function App() {
 
   return (
     <GlobalProvider value={{ isDesktop }}>
-      <StyledContainer className="w-screen h-screen bg-white flex overflow-hidden relative">
+      <div className="h-screen bg-white flex justify-center overflow-hidden relative">
         <ToastContainer />
 
         {isDesktop ? (
@@ -106,7 +104,7 @@ function App() {
           hourlyWeather={forecastWeather.hourly}
           setVisible={setVisible}
         />
-      </StyledContainer>
+      </div>
     </GlobalProvider>
   );
 }

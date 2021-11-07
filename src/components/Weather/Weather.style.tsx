@@ -8,7 +8,7 @@ export const StyledContainer = styled.div`
   background-size: cover;
 
   @media screen and (min-width: 992px) {
-    flex: 0.35;
+    flex: 1 0 35%;
   }
 `;
 
